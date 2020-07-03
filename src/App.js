@@ -24,10 +24,16 @@ componentDidMount = () => {
   render() {
     return (
       <div>
-        <Header/>
-        <Dashboard
-        list={this.state.list}/>
-        <Form/>
+          <Header/>
+        <div className='main-container'>  
+        <section>
+          <Dashboard
+          list={this.state.list}/>
+        </section>
+        <section>
+          <Form/>
+        </section>
+        </div>
       </div>
     )
   }
