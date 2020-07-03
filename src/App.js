@@ -28,7 +28,8 @@ componentDidMount = () => {
         <div className='main-container'>  
         <section>
           <Dashboard
-          list={this.state.list}/>
+          list={this.state.list}
+          getRequest={this.componentDidMount}/>
         </section>
         <section>
           <Form
