@@ -4,7 +4,7 @@ import './Product.css';
 class Product extends Component {
     
     render() {
-        console.log(this.props.product)
+        // console.log(this.props.product)
         const product = this.props.product;
         return (
             <div>
