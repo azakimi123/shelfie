@@ -8,9 +8,11 @@ class Product extends Component {
         const product = this.props.product;
         return (
             <div>
-                <img className='image'src={product.img}/>
-                <p>Name: {product.name}</p>
-                <p>Price: ${product.price}</p>
+                <section className='product-card'>
+                    <img className='product-image'src={product.img}/>
+                    <p className='product-name'>Name: {product.name}</p>
+                    <p className='product-price'>Price: ${product.price}</p>
+                </section>
             </div>
         )
     }
