@@ -31,7 +31,8 @@ componentDidMount = () => {
           list={this.state.list}/>
         </section>
         <section>
-          <Form/>
+          <Form
+          getRequest={this.componentDidMount}/>
         </section>
         </div>
       </div>

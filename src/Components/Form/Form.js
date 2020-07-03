@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import './Form.css'
 
 class Form extends Component {
@@ -32,11 +33,25 @@ handleCancelBtn = () => {
     })
 }
 
+createProduct = () => {
+    axios.post('/api/product', {
+        name: this.state.name,
+        price: this.state.price,
+        img: this.state.imgurl
+    })
+    .then(() => {
+        this.props.getRequest();
+        this.handleCancelBtn();
+    })
+    .catch( err => console.log(err));
+}
+
 
 
     render() {
         // console.log(this.state.name)
         // console.log(this.state.price)
+
         return (
             <div>
                 <section className='form-container'>
@@ -59,7 +74,11 @@ handleCancelBtn = () => {
                             onClick={this.handleCancelBtn}>
                             Cancel
                         </button>
-                        <button className='add-btn'>Add to Inventory</button>
+                        <button 
+                            className='add-btn'
+                            onClick={this.createProduct}>
+                            Add to Inventory
+                        </button>
                     </div>
                 </section>
             </div>
