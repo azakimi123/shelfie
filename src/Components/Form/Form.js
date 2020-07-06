@@ -7,12 +7,31 @@ class Form extends Component {
         super(props);
         this.state = {
             productId: null,
+            productInfo: {},
             imgurl: '',
             name: '',
             price: 0,
             isEditing: false
         }
     }
+
+componentDidMount = () => {
+    if (typeof this.props.match.params.id === 'undefined'){
+        this.setState({isEditing: false});
+    } else {
+        this.setState({isEditing: true});
+        axios.get(`/api/product/${this.props.match.params.id}`)
+            .then( res => {
+                this.setState({
+                    productInfo: res.data[0],
+                    imgurl: res.data[0].img,
+                    name: res.data[0].name,
+                    price: res.data[0].price
+                })
+            })
+            .catch( err => console.log(err));
+    }
+}
 
 
 handleImg = (url) => {
@@ -31,8 +50,7 @@ handleCancelBtn = () => {
     this.setState({
         imgurl: '',
         name: '',
-        price: 0,
-        isEditing:false
+        price: 0
     })
 }
 
@@ -49,25 +67,26 @@ createProduct = () => {
     .catch( err => console.log(err));
 }
 
-componentDidUpdate = (prevProps, prevState) => {
-    if (prevProps.currentProduct !== this.props.currentProduct || prevState.currentProduct !== this.state.currentProduct) {
-        this.setState({
-            productId: this.props.currentProduct.product_id,
-            isEditing: true,
-            name: this.props.currentProduct.name,
-            price: this.props.currentProduct.price,
-            imgurl: this.props.currentProduct.img
-        })
-    }
-}
+// componentDidUpdate = (prevProps, prevState) => {
+//     if (prevProps.currentProduct !== this.props.currentProduct || prevState.currentProduct !== this.state.currentProduct) {
+//         this.setState({
+//             productId: this.props.currentProduct.product_id,
+//             isEditing: true,
+//             name: this.props.currentProduct.name,
+//             price: this.props.currentProduct.price,
+//             imgurl: this.props.currentProduct.img
+//         })
+//     }
+// }
 
 handleEditBtn = () => {
     this.setState({isEditing: false})
 }
 
 
-editProduct = (id) => {
-    axios.put(`/api/product/${id}`, {
+editProduct = () => {
+    console.log(this.props)
+    axios.put(`/api/product/${this.props.match.params.id}`, {
         name: this.state.name,
         price: this.state.price,
         img: this.state.imgurl
@@ -81,10 +100,13 @@ editProduct = (id) => {
 }
 
     render() {
-        console.log(this.state.name)
+        console.log(this.props)
+        console.log(this.state.isEditing)
+        const info = this.state.productInfo;
+        // console.log(this.state.name)
         // console.log(this.state.price)
         // console.log(this.props.currentProduct)
-        console.log(this.state.productId)
+        // console.log(this.state.productId)
         const product = this.props.currentProduct;
 
         return (
@@ -114,7 +136,7 @@ editProduct = (id) => {
                         </button>
                         <button 
                             className='save-changes-btn'
-                            onClick={() => this.editProduct(product.product_id)}>
+                            onClick={this.editProduct}>
                             Save Changes
                         </button>
                     </div>

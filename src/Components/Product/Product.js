@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 // import Form from '../Form/Form';
 import './Product.css';
 
@@ -15,6 +16,7 @@ class Product extends Component {
     // }
     
     render() {
+        // console.log(this.props)
         // console.log(this.props.product)
         const product = this.props.product;
         // console.log(product.product_id)
@@ -27,8 +29,11 @@ class Product extends Component {
                     <button
                         onClick={ () => this.props.deleteFn(product.product_id)}
                         className='delete-button'>Delete</button>
-                    <button onClick={()=> this.props.selectedFn(product)}
-                    className='edit-button'>Edit</button>
+                    <Link to={`/edit/${product.product_id}`}>
+                        <button
+                        // onClick={() => this.props.selectedFn(product.product_id)}
+                        className='edit-button'>Edit</button>
+                    </Link>
 
                 </section>
             </div>
