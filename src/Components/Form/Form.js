@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './Form.css'
+import Dashboard from '../Dashboard/Dashboard';
 
 class Form extends Component {
     constructor(props) {
@@ -33,6 +35,13 @@ componentDidMount = () => {
     }
 }
 
+getInventory = () => {
+    axios.get('/api/inventory')
+    .then(res => {
+        return res.data
+    })
+    .catch(err => console.log(err))
+}
 
 handleImg = (url) => {
     this.setState({imgurl: url})
@@ -61,7 +70,7 @@ createProduct = () => {
         img: this.state.imgurl
     })
     .then(() => {
-        this.props.getRequest();
+        this.getInventory();
         this.handleCancelBtn();
     })
     .catch( err => console.log(err));
@@ -131,14 +140,16 @@ editProduct = () => {
                     <div className='button-container'>
                         <button 
                             className='cancel-btn'
-                            onClick={this.handleCancelBtn}>
+                            onClick={ () => this.props.history.goBack()}>
                             Cancel
                         </button>
-                        <button 
-                            className='save-changes-btn'
-                            onClick={this.editProduct}>
-                            Save Changes
-                        </button>
+                        <Link to='/'>
+                            <button 
+                                className='save-changes-btn'
+                                onClick={this.editProduct}>
+                                Save Changes
+                            </button>
+                        </Link>
                     </div>
                 </section>
                     )
@@ -163,11 +174,13 @@ editProduct = () => {
                                 onClick={this.handleCancelBtn}>
                                 Cancel
                             </button>
-                            <button 
-                                className='add-btn'
-                                onClick={this.createProduct}>
-                                Add to Inventory
-                            </button>
+                            <Link to='/'>
+                                <button 
+                                    className='add-btn'
+                                    onClick={this.createProduct}>
+                                    Add to Inventory
+                                </button>
+                            </Link>
                         </div>
                     </section>
                     )

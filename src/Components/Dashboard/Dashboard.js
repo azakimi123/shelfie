@@ -27,7 +27,7 @@ class Dashboard extends Component {
     deleteProduct = (id) => {
         axios.delete(`/api/product/${id}`)
         .then( () => {
-            this.props.getRequest();
+            this.componentDidMount();
         })
         .catch( err => console.log(err));
     }
