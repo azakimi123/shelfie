@@ -1,10 +1,15 @@
+
+.dashboard{
+    display: flex;
+    justify-content: center;
+}
 .product-card {
     width: 500px;
     height: 200px;
     background: #D34735;
     padding: 10px;
     margin: 30px;
-    margin-left: 150px;
+    /* margin-left: 100px; */
     display: flex;
     align-items: center;
     justify-content: space-between;

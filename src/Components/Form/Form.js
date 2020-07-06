@@ -119,7 +119,7 @@ editProduct = () => {
         const product = this.props.currentProduct;
 
         return (
-            <div>
+            <div className='container'>
                 {
                     this.state.isEditing
                     ? (

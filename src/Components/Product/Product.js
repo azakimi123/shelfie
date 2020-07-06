@@ -21,7 +21,7 @@ class Product extends Component {
         const product = this.props.product;
         // console.log(product.product_id)
         return (
-            <div>
+            <div className='dashboard'>
                 <section className='product-card'>
                     <img className='product-image'src={product.img} alt={product.name}/>
                     <p className='product-name'>Name: {product.name}</p>
