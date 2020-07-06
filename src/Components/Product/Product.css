@@ -21,3 +21,9 @@
 .product-price{
     margin-right: 15px;
 }
+
+.edit-form{
+    margin-left: 402px;
+    margin-top: 250px;
+    z-index: 2;
+}
