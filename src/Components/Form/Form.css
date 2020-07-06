@@ -31,3 +31,19 @@
     border: none;
     border-radius: 7px;
 }
+
+.add-btn {
+    width: 100px;
+    height: 40px;
+    background: #ed6b5a;
+    border: none;
+    border-radius: 7px;
+}
+
+.save-changes-btn {
+    width: 100px;
+    height: 40px;
+    background: #ed6b5a;
+    border: none;
+    border-radius: 7px;
+}

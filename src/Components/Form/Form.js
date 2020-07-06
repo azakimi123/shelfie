@@ -31,7 +31,8 @@ handleCancelBtn = () => {
     this.setState({
         imgurl: '',
         name: '',
-        price: 0
+        price: 0,
+        isEditing:false
     })
 }
 
@@ -49,7 +50,7 @@ createProduct = () => {
 }
 
 componentDidUpdate = (prevProps, prevState) => {
-    if (prevProps.currentProduct !== this.props.currentProduct) {
+    if (prevProps.currentProduct !== this.props.currentProduct || prevState.currentProduct !== this.state.currentProduct) {
         this.setState({
             productId: this.props.currentProduct.product_id,
             isEditing: true,
@@ -63,6 +64,7 @@ componentDidUpdate = (prevProps, prevState) => {
 handleEditBtn = () => {
     this.setState({isEditing: false})
 }
+
 
 editProduct = (id) => {
     axios.put(`/api/product/${id}`, {
